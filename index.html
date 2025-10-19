@@ -19,12 +19,12 @@
 </script>
     <title>Dashboard</title>
 </head>
-<body class="font-poppins bg-gray-800">
+<body class="font-poppins bg-gray-800 overflow-x-hidden">
     
-    <div class="bg-gray-900 border-r border-gray-600 px-2 text-white fixed top-0 left-0 h-dvh hidden md:block md:w-72">
+    <div class="bg-gray-900 border-r border-gray-600 px-2 text-white fixed top-0 left-0 h-dvh hidden lg:block lg:w-72">
          <div class="text-center relative text-white py-5 font-semibold">  <h1>AdminPro</h1></div>
 
-         <div class="">
+         <div>
 
          <div class=" px-3 flex items-center cursor-pointer justify-start hover:bg-gray-700 hover:text-blue-500 transition-all duration-100 py-4 rounded-lg"><i class="ri-home-fill mr-3 text-2xl"></i>  <h1>Dashboard</h1></div>
          <div class=" px-3 flex items-center cursor-pointer justify-start hover:bg-gray-700 hover:text-blue-500 transition-all duration-100 py-4 rounded-lg"><i class="ri-group-fill mr-3 text-2xl"></i><h1>Users</h1></div>
@@ -38,21 +38,37 @@
            <span>Log out</span>
         </div>
     </div>
+   
+    <!--____________________asidbar____________________________-->
+    <div id="overlay" class="hidden absolute inset-0 bg-black/50 backdrop-blur-sm cursor-pointer z-40"></div>
+    <div id="asideBar" class="bg-gray-700 text-white transition-all duration-300 shadow-md ease-in-out absolute top-0 -left-96 z-50 h-full w-64 sm:w-64 md:w-72   px-5 py-5">
+         <i id="closeMenu" class="ri-close-large-line text-white cursor-pointer transform active:scale-95 transition-all duration-200 text-3xl"></i>
+         <div class=" flex items-center cursor-pointer justify-start transition-all duration-100 py-4 rounded-lg"><i class="ri-home-fill mr-3 text-2xl"></i>  <h1>Dashboard</h1></div>
+         <div class=" flex items-center cursor-pointer justify-start transition-all duration-100 py-4 rounded-lg"><i class="ri-group-fill mr-3 text-2xl"></i><h1>Users</h1></div>
+         <div class=" flex items-center cursor-pointer justify-start transition-all duration-100 py-4 rounded-lg"><i class="ri-money-dollar-circle-fill mr-3 text-2xl"></i> <h1>Sales</h1></div>
+         <div class=" flex items-center cursor-pointer justify-start transition-all duration-100 py-4 rounded-lg"><i class="ri-line-chart-fill mr-3 text-2xl"></i><h1>Analytics</h1></div>
+         <div class=" flex items-center cursor-pointer justify-start transition-all duration-100 py-4 rounded-lg"><i class="ri-settings-fill mr-3 text-2xl"></i><h1>Setting</h1></div>
+    </div>
+    <!--____________________asidbar____________________________-->
 
    <!--the dashboard-->
 
-   <div class=" md:ml-72">
+   <div class=" lg:ml-72">
        <!--header-->
     <div class="px-5 border-b border-gray-600 text-white flex h-20 items-center justify-between">
         <h1 class="text-base hidden lg:block sm:text-lg">Dashboard</h1>
+        <!--burger menu-->
+        <i id="openMenu" class="ri-menu-line text-white cursor-pointer transform active:scale-95 transition-all duration-200 text-3xl lg:hidden"></i>
+        <!--burger menu-->
         <div class=" relative h-12 rounded-full flex ">
             <i class="ri-search-line transition-all duration-300 cursor-pointer absolute hover:text-blue-500 text-gray-900 right-3 top-1/2 -translate-y-1/2 text-2xl"></i>
-            <input class="rounded-full w-60 sm:w-full bg-gray-700 outline-none transition-all duration-300 focus:ring-blue-500 focus:ring-2 pl-5" type="text" placeholder="search...">
+            <input class="rounded-full text-gray-300 w-60 sm:w-full bg-gray-700 outline-none transition-all duration-300 focus:ring-blue-500 focus:ring-2 pl-5" type="text" placeholder="search...">
         </div>
         <i class="ri-notification-fill transition-all duration-300 cursor-pointer text-2xl hover:text-blue-500"></i>
         <i class="ri-user-fill text-2xl transition-all duration-300 cursor-pointer hover:text-blue-500"></i>
     </div>
        <!--end header-->
+       <!--_______________________main___________________________-->
      <div class="flex flex-col gap-5 text-white p-5 ">
 
            <!--statistique-->     
@@ -81,22 +97,80 @@
             </div>
            <!-- end statistique-->  
             <!--graphs-->   
-         <div class=" h-80 flex flex-col sm:flex-row items-center gap-5 justify-between ">
-                <div class="bg-gray-700/50 h-full w-full flex items-center justify-center p-5 rounded-xl">
+         <div class="flex flex-col md:flex-row items-center gap-5 justify-between ">
+                <div class="h-80 bg-gray-700/50 w-full flex items-center justify-center p-5 rounded-xl">
                   <canvas id="salesChart"></canvas>
                 </div>
-
-
-                <div class="bg-gray-700/50 h-full w-full flex items-center justify-center p-5 rounded-xl">
+                <div class="h-80 bg-gray-700/50 w-full flex items-center justify-center p-5 rounded-xl">
                   <canvas id="userChart"></canvas>
                 </div>
               
          </div>
+            <!--end graphs-->   
+
+          <!--TABLE-->
+            <div class=" bg-gray-700/50 rounded-xl p-4 shadow-md">
+              <h1 class="text-white text-lg font-semibold mb-4">Recent Transactions</h1>
+              <div class="overflow-x-auto">
+                 <table class="min-w-full border  border-gray-600 text-left text-white">
+                   <thead class="bg-gray-800 text-gray-400 py-3">
+                           <tr>
+                            <th  class="py-3 px-2">ID</td>
+                            <th class="py-3 px-2">Customer</td>
+                            <th class="py-3 px-2">Amount</td>
+                            <th class="py-3 px-2">Status</td>
+                            <th class="py-3 px-2">Date</td>
+                           </tr>
+                   </thead>
+                   <tbody>
+                    <tr class="hover:bg-gray-700">
+                      <td class="py-3 px-2">00</td>
+                      <td class="py-3 px-2">Aymane dev</td>
+                      <td class="py-3 px-2">$951</td>
+                      <td class="py-3 px-2">
+                       <div class="bg-red-500/20 text-red-400 text-center w-20 rounded-full py-1">Banned</div>
+                      </td class="py-3 px-2">
+                      <td>10 Oct</td>
+                    </tr>
+                     <tr class="hover:bg-gray-700">
+                      <td class="py-3 px-2">02</td>
+                      <td class="py-3 px-2">jilali</td>
+                      <td class="py-3 px-2">$35.4</td>
+                      <td class="py-3 px-2">
+                      <div class="bg-green-500/20 text-green-400 text-center w-20  rounded-full py-1">active</div>
+                      </td class="py-3 px-2">
+                      <td class="py-3 px-2">12 Jan</td>
+                    </tr>
+                      <tr class="hover:bg-gray-700">
+                      <td class="py-3 px-2">03</td>
+                      <td class="py-3 px-2">3ebass</td>
+                      <td class="py-3 px-2">$74.01</td>
+                      <td class="py-3 px-2">
+                       <div class="bg-yellow-500/20 text-yellow-400 text-center w-20  rounded-full py-1">Pending</div>
+                      </td class="py-3 px-2">
+                      <td class="py-3 px-2">17 Sept</td>
+                    </tr>
+                      <tr class="hover:bg-gray-700">
+                      <td class="py-3 px-2">04</td>
+                      <td class="py-3 px-2">hmida</td>
+                      <td class="py-3 px-2">$621</td>
+                      <td class="py-3 px-2">
+                        <div class="bg-green-500/20 text-green-400 text-center w-20  rounded-full py-1">active</div>
+                      </td class="py-3 px-2">
+                      <td class="py-3 px-2">8 Aut</td>
+                    </tr>
+
+                   </tbody>
+              </table>
+              </div>
+            
+            </div>
+          <!--END TABLE-->
 
        
-      </div>
+      </div> 
+      <!--_______________________end main___________________________---->
 
-      
    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

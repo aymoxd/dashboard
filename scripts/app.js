@@ -1,3 +1,27 @@
+ const openMenu = document.getElementById('openMenu');
+ const closeMenu = document.getElementById('closeMenu');
+ const asideBar = document.getElementById('asideBar');
+ const overlay = document.getElementById('overlay');
+
+ openMenu.addEventListener('click',()=>{
+          asideBar.classList.remove('-left-96');
+          asideBar.classList.add('left-0');
+          overlay.classList.remove('hidden');
+ });
+ closeMenu.addEventListener('click',()=>{
+          asideBar.classList.remove('left-0');
+          asideBar.classList.add('-left-96');
+          overlay.classList.add('hidden');
+ });
+  overlay.addEventListener('click',()=>{
+          asideBar.classList.remove('left-0');
+          asideBar.classList.add('-left-96');
+          overlay.classList.add('hidden');
+ });
+ 
+ 
+ 
+ 
  const ctx = document.getElementById('salesChart');
 
   new Chart(ctx, {
